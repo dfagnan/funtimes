@@ -81,7 +81,7 @@ public class Navigator {
        if(bnav_lastDist == 0) {
            // Try navigating towards the goal
            if(d == cur) {
-               if(myRC.canMove(d)) {
+               if(myRC.getFlux()>=myRC.getType().moveCost && myRC.canMove(d)) {
                    myRC.moveForward();
                } else {
                    // Hit a wall, begin wall following

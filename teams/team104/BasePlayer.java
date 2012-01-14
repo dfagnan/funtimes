@@ -11,7 +11,24 @@ public abstract class BasePlayer extends StaticStuff{
 	}
 
 	public abstract void run();
-
+	
+	public MapLocation  getNearestCapturable(){
+		return getNearestCapturable(new MapSet());
+	}
+	public MapLocation getNearestCapturable(MapSet set){
+		MapLocation cur = myRC.getLocation();
+		MapLocation[] nodes = myRC.senseCapturablePowerNodes();
+		MapLocation closeNode = nodes[0];
+		double min = closeNode.distanceSquaredTo(myRC.getLocation());
+		for(MapLocation loc : nodes){
+			if(!set.contains(loc) && loc.distanceSquaredTo(cur)<min){
+				min = loc.distanceSquaredTo(cur);
+				closeNode = loc;
+			}
+		}
+		return closeNode;
+	}
+	
 	public void senseHelper(MapLocation loc, Direction dir, int radius){
 		boolean done = false;
 		int i=radius;

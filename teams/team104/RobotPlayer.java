@@ -11,6 +11,12 @@ public class RobotPlayer {
 		case ARCHON:
 			new ArchonPlayer(myRC).run();
 			break;
+		case SOLDIER:
+			new SoldierPlayer(myRC).run();
+			break;
+		case SCOUT: 
+			new ScoutPlayer(myRC).run();
+			break;
 		}
 
 	}
